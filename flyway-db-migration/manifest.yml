@@ -1,0 +1,8 @@
+applications:
+- name: pcf-boot-mysql
+  #path: ./target/pcf-demo-1.0.jar
+  path: target\pcf-boot-mysql.jar
+  memory: 700M
+  instances: 1
+  services:
+  - mysql

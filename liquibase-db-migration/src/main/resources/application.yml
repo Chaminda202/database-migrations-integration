@@ -16,6 +16,6 @@ spring:
         show_sql: true
         format_sql: true
 
-  liquibase:
-    enabled: true
-    changeLog: classpath:db/changelog/db.changelog-master.xml
+#use this command to generate chanagelog defaultSchema should be defined in liquibase config file
+  # mvn liquibase:generateChangeLog - generate only tables
+  # mvn liquibase:generateChangeLog -Dliquibase.diffTypes=data - generates tables with data

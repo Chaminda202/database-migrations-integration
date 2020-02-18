@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.db.migration</groupId>
-	<artifactId>liquibase-db-migration</artifactId>
+	<artifactId>liquibase-generate-changelog</artifactId>
 	<version>1.0</version>
-	<name>liquibase-db-migration</name>
+	<name>liquibase-generate-changelog</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -33,15 +33,15 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!--<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -111,7 +111,16 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.8.6</version>
+				<configuration>
+					<propertyFile>src/main/resources/liquibase.yml</propertyFile>
+					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+				</configuration>
+			</plugin>
 		</plugins>
-		<finalName>liquibase-db-migration</finalName>
+		<finalName>liquibase-generate-changelog</finalName>
 	</build>
 </project>

@@ -1,0 +1,21 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: flyway-db-migration
+
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/liquibase_db?createDatabaseIfNotExist=true
+    username: root
+    password:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+  liquibase:
+    enabled: true
+    changeLog: classpath:db/changelog/db.changelog-master.xml

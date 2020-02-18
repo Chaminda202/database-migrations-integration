@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="ChamindaSampath (generated)" id="1">
+        <createTable tableName="student">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="age" type="INT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="occupation" type="VARCHAR(255)"/>
+            <column name="salary" type="DECIMAL(19, 2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ChamindaSampath (generated)" id="2">
+        <insert tableName="student">
+            <column name="age" valueNumeric="20"></column>
+            <column name="name" value="Tom"></column>
+            <column name="occupation" value="Student"></column>
+            <column name="salary" valueNumeric="0.00"></column>
+        </insert>
+        <insert tableName="student">
+            <column name="age" valueNumeric="23"></column>
+            <column name="name" value="Sam"></column>
+            <column name="occupation" value="Student"></column>
+            <column name="salary" valueNumeric="1200.00"></column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

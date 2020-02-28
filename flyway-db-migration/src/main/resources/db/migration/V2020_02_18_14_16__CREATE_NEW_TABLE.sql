@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS course (
+  id int NOT NULL AUTO_INCREMENT,
+  course_duration int DEFAULT NULL,
+  name varchar(20) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

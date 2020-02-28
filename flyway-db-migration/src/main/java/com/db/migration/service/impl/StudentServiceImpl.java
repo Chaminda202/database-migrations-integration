@@ -1,12 +1,17 @@
 package com.db.migration.service.impl;
 
+import com.db.migration.common.CourseMap;
 import com.db.migration.common.StudentMap;
 import com.db.migration.entity.Student;
 import com.db.migration.repository.StudentRepository;
+import com.db.migration.request.StudentAndCourseRequest;
 import com.db.migration.response.StudentResponse;
+import com.db.migration.service.CourseService;
 import com.db.migration.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -14,6 +19,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private StudentRepository studentRepository;
+    private CourseService courseService;
     @Override
     public StudentResponse create(Student student) {
         return StudentMap
@@ -41,5 +47,12 @@ public class StudentServiceImpl implements StudentService {
             return StudentMap
                     .mapStudentResponse(this.studentRepository.save(student));
         return new StudentResponse();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void saveStudentAndCourse(StudentAndCourseRequest studentAndCourseRequest){
+        this.studentRepository.save(StudentMap.mapStudentRequest(studentAndCourseRequest.getStudentRequest()));
+        this.courseService.create(CourseMap.mapCourseRequest(studentAndCourseRequest.getCourseRequest()));
     }
 }
